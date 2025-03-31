@@ -18,7 +18,7 @@ This project develops a machine learning model to classify chicken health status
    ```
 3. Clone the repo:
    ```
-   git clone https://github.com/yourusername/diseaseIdentifyByChickShit.git
+   git clone https://github.com/SirOsborn/Chicken-Disease-Identifier.git
    cd diseaseIdentifyByChickShit
    ```
 
