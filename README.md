@@ -53,7 +53,7 @@ Chicken-Disease-Identifier/
 |   ├── Train/                           # jpg feces images of the dataset
 │   └── train_data.csv                   # CSV with image labels
 |      
-├── model/                           # Directory for the model and LabelEncoder
+├── model/                               # Directory for the model and LabelEncoder
 │   ├── chicken_disease_model_efficientnetb0_final_v3.h5
 │   └── label_encoder.pkl
 │
@@ -114,7 +114,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 ---
 ## Acknowledgments
 
-    - Thanks to the creators of EfficientNet and TensorFlow for providing powerful tools for deep learning.
-    - Inspired by the need for automated disease detection in poultry farming to improve animal health and farm productivity.
+- Thanks to the creators of EfficientNet and TensorFlow for providing powerful tools for deep learning.
+- Inspired by the need for automated disease detection in poultry farming to improve animal health and farm productivity.
 
 ---
