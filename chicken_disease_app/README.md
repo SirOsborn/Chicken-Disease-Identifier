@@ -11,7 +11,20 @@ Key Features
 ---
 
 ## Instructions
-
+### Directory Structure
+```
+chicken_disease_app/
+├── app.py                           # Main Flask application
+├── static/                          # Static files (CSS, uploaded images)
+│   ├── css/
+│   │   └── style.css                # CSS for styling the web app
+│   └── uploads/                     # Directory to store uploaded images
+├── pages/                           # HTML templates
+│   ├── index.html                   # Home page for uploading images
+│   └── result.html                  # Page to display prediction results
+└── README.md                        # This documentation
+```
+---
 1. Navigate to the Directory
 ```
 cd ../chicken_disease_app
