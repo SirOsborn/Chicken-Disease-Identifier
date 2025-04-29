@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance - Chicken Disease Identification</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=add_circle" />
+</head>
+<body>
+    <!-- Navbar -->
+    <section class="menu">
+        <div class="nav">
+            <div class="logo">
+                <img src="../image/1.png" alt="Ant Logo">
+                <h1>Chicken<b>Disease</b></h1>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="performance.html" class="active">Performance</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </section>
+   <!-- Form Section -->
+<div class="container">
+    <h1>Chicken Disease Identification</h1>
+    
+    <div class="upload-section">
+        <h2>Upload Image </h2>
+        <div class="upload-box" id="uploadBox">
+            <img id="previewImage" style="max-width: 100%; height: auto; display: none; margin-bottom: 10px;" />
+    
+            <p>Drop file here or</p>
+            <button type="button" onclick="document.getElementById('imageFile').click()">Select File</button>
+            <input type="file" id="imageFile" name="imageFile" accept="image/*,video/*" style="display: none;">
+        </div>
+    </div>
+    
+
+    <div class="url-section">
+        <h2>Paste YouTube or Image URL</h2>
+        <input type="text" id="imageUrl" name="imageUrl" placeholder="Paste a link...">
+    </div>
+
+    <div class="other-options">
+        <button type="button" class="webcam-btn">Try With Webcam</button>
+        <button type="button" class="machine-btn">Try On My Machine</button>
+    </div>
+
+    <form id="diseaseForm" style="margin-top: 20px;">
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+
+    <div id="result" class="result" style="display: none;">
+        <h3>Prediction Result:</h3>
+        <p id="prediction"></p>
+    </div>
+</div>
+ <!--sample poo-->
+ <section class="category">
+    <div class="list-item">
+        <h3>Sample Chicken Disease Categories</h3>
+        <div class="card-list">
+            <div class="card">
+                <img src="../image/SS.png" alt="Salmonella">
+                <h1>Salmonella</h1>
+                <p>Infection causing diarrhea, fever, and abdominal cramps. Can spread rapidly among flocks if untreated.</p>
+                <div class="price">
+                    <span>Common Disease</span>
+                    <span><i class="material-symbols-outlined plus-icon">add_circle</i></span>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="../image/CC.png" alt="Coccidiosis">
+                <h1>Coccidiosis</h1>
+                <p>A parasitic disease affecting chicken intestines, leading to poor growth, weakness, and death if severe.</p>
+                <div class="price">
+                    <span>Serious Disease</span>
+                    <span><i class="material-symbols-outlined plus-icon">add_circle</i></span>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="../image/NCD.png" alt="New Castle Disease">
+                <h1>New Castle Disease</h1>
+                <p>Highly contagious viral infection causing respiratory distress, nervous symptoms, and reduced egg production.</p>
+                <div class="price">
+                    <span>Highly Infectious</span>
+                    <span><i class="material-symbols-outlined plus-icon">add_circle</i></span>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="../image/healthy.png" alt="Healthy">
+                <h1>Healthy</h1>
+                <p>Chickens are active, eating well, and showing no signs of disease. Proper vaccination and care are essential.</p>
+                <div class="price">
+                    <span>No Disease</span>
+                    <span><i class="material-symbols-outlined plus-icon">add_circle</i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+
+</html>
