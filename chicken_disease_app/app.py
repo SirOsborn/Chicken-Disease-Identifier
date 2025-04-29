@@ -1,64 +1,67 @@
-import os
-import numpy as np
 from flask import Flask, request, render_template
+import numpy as np
 from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing.image import img_to_array, load_img
+from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import pickle
-from PIL import Image
+import os
 
-# Initialize Flask app
-app = Flask(__name__)
+# Explicitly set the template folder to 'pages'
+app = Flask(__name__, template_folder='pages')
 
-# Set upload folder
-UPLOAD_FOLDER = 'chicken_disease_app/static/uploads/'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+# Debug the model file path
+model_path = os.path.join('model', 'chicken_disease_model_efficientnetb0_final.h5')
+print(f"Attempting to load model from: {os.path.abspath(model_path)}")
+if not os.path.exists(model_path):
+    raise FileNotFoundError(f"Model file not found at: {model_path}")
 
-# Load the model and LabelEncoder
-model = load_model('model/chicken_disease_model_efficientnetb0_final_v3.h5')
-with open('model/label_encoder.pkl', 'rb') as f:
+# Load the model and label encoder
+model = load_model(model_path)
+
+label_encoder_path = os.path.join('model', 'label_encoder.pkl')
+print(f"Attempting to load label encoder from: {os.path.abspath(label_encoder_path)}")
+if not os.path.exists(label_encoder_path):
+    raise FileNotFoundError(f"Label encoder file not found at: {label_encoder_path}")
+
+with open(label_encoder_path, 'rb') as f:
     label_encoder = pickle.load(f)
 
-# Function to preprocess the image
-def preprocess_image(image_path):
-    img = load_img(image_path, target_size=(224, 224))
-    img = img_to_array(img)
-    img = img / 255.0  # Normalize to [0, 1]
-    img = np.expand_dims(img, axis=0)  # Add batch dimension
-    return img
+# Define the upload folder
+UPLOAD_FOLDER = os.path.join('static', 'uploads')
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-# Route for the home page
 @app.route('/')
 def index():
-    return render_template('index.html')
+    # Use the pages/ directory for templates
+    return render_template('index.html')  # No need for 'pages/' prefix since template_folder is set
 
-# Route to handle image upload and prediction
 @app.route('/predict', methods=['POST'])
 def predict():
     if 'file' not in request.files:
-        return render_template('index.html', error='No file uploaded')
-
+        return render_template('index.html', error="No file uploaded")
+    
     file = request.files['file']
     if file.filename == '':
-        return render_template('index.html', error='No file selected')
+        return render_template('index.html', error="No file selected")
 
     if file:
-        # Save the uploaded image
+        # Save the uploaded file
         filename = file.filename
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(filepath)
 
         # Preprocess the image
-        img = preprocess_image(filepath)
+        img = load_img(filepath, target_size=(224, 224))
+        img_array = img_to_array(img) / 255.0
+        img_array = np.expand_dims(img_array, axis=0)
 
         # Make prediction
-        pred_prob = model.predict(img, verbose=0)
-        pred_class = np.argmax(pred_prob, axis=1)[0]
-        pred_label = label_encoder.inverse_transform([pred_class])[0]
+        prediction = model.predict(img_array)
+        predicted_class = np.argmax(prediction, axis=1)[0]
+        confidence = float(np.max(prediction)) * 100
+        predicted_label = label_encoder.classes_[predicted_class]
 
-        # Get prediction confidence
-        confidence = float(pred_prob[0][pred_class]) * 100
-
-        return render_template('result.html', prediction=pred_label, confidence=confidence, image_path=filepath)
+        # Render the result page
+        return render_template('result.html', prediction=predicted_label, confidence=confidence, image_path=filepath)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True)
