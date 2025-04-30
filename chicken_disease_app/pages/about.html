@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Chicken Disease Identification</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <!-- Navbar -->
+  <section class="menu">
+    <div class="nav">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='image/ant_icon.png') }}" alt="Ant Logo">
+            <h1>Chicken<b>Disease</b></h1>
+        </div>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('predict') }}">Prediction</a></li>
+            <li><a href="{{ url_for('about') }}" class="active">About</a></li>
+        </ul>
+    </div>
+  </section>
+
+  <!-- About Header -->
+  <div class="about-header">
+    <h2>MEET THE TEAM!</h2>
+  </div>
+
+  <!-- Vision Section -->
+  <div class="vision">
+    <h3>Our Vision</h3>
+    <p>
+      To revolutionize poultry farming by leveraging artificial intelligence for early and accurate chicken disease detection ensuring healthier flocks, reducing economic loss, and empowering farmers with smart agricultural tools.
+    </p>
+  </div>
+
+  <!-- Team Section -->
+  <div class="team-section">
+    <div class="team-grid">
+      <div class="team-member">
+        <img src="{{ url_for('static', filename='image/LeHeng.png') }}" alt="Sun Heng">
+        <h4>Sun Heng</h4>
+      </div>
+      <div class="team-member">
+        <img src="{{ url_for('static', filename='image/Sreyneang.png') }}" alt="Yung Sreyneang">
+        <h4>Yung Sreyneang</h4>
+      </div>
+      <div class="team-member">
+        <img src="{{ url_for('static', filename='image/Sreyneath.png') }}" alt="Kaem Sreyneath">
+        <h4>Kaem Sreyneath</h4>
+      </div>
+      <div class="team-member">
+        <img src="{{ url_for('static', filename='image/Cheasda.png') }}" alt="Mao Cheasda">
+        <h4>Mao Cheasda</h4>
+      </div>
+      <div class="team-member">
+        <img src="{{ url_for('static', filename='image/Sannara.png') }}" alt="Nut Sannara">
+        <h4>Nut Sannara</h4>
+      </div>
+      <div class="team-member">
+        <img src="{{ url_for('static', filename='image/Darika.png') }}" alt="Sophea Darika">
+        <h4>Sophea Darika</h4>
+      </div>
+      <div class="team-member">
+        <img src="{{ url_for('static', filename='image/Rangsey.png') }}" alt="Virak Rangsey">
+        <h4>Virak Rangsey</h4>
+      </div>
+      <div class="team-member">
+        <img src="{{ url_for('static', filename='image/Bunchhour.png') }}" alt="Veat Bunchhour">
+        <h4>Veat Bunchhour</h4>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
